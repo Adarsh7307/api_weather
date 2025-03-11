@@ -5,69 +5,110 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather App</title>
     <style>
-  body {
-    background-image: url('https://github.com/Adarsh7307/api_weather/blob/main/images/weather%20image.jpg?raw=true');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    height: 100vh;
-}
-
-
-        .weather-container {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            text-align: center;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
+        /* ✅ Full Screen Background */
+        body {
+            background-image: url('https://github.com/Adarsh7307/api_weather/blob/main/images/weather%20image.jpg?raw=true');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* ✅ Center Weather Box */
+        .weather-container {
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            width: 350px;
+            backdrop-filter: blur(5px);
+        }
+
+        /* ✅ Heading */
         h1 {
             margin-bottom: 20px;
+            font-size: 24px;
         }
 
+        /* ✅ Input Field */
         input[type="text"] {
-            padding: 10px;
-            width: 200px;
-            margin-right: 10px;
-            border: 1px solid #ccc;
+            padding: 12px;
+            width: 250px;
+            margin-bottom: 15px;
+            border: none;
             border-radius: 5px;
+            outline: none;
         }
 
+        /* ✅ Button Style */
         button {
-            padding: 10px 20px;
+            padding: 12px 25px;
             background-color: #007bff;
             color: #fff;
             border: none;
             border-radius: 5px;
             cursor: pointer;
+            font-size: 16px;
         }
 
         button:hover {
             background-color: #0056b3;
         }
 
+        /* ✅ Weather Info Display */
         #weatherInfo {
             margin-top: 20px;
         }
 
         #weatherInfo p {
             margin: 10px 0;
+            font-size: 18px;
+        }
+
+        /* ✅ Responsive Design */
+        @media (max-width: 768px) {
+            .weather-container {
+                width: 300px;
+                padding: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .weather-container {
+                width: 280px;
+                padding: 15px;
+            }
+
+            input[type="text"] {
+                width: 200px;
+            }
         }
     </style>
 </head>
 <body>
+
+    <!-- ✅ Weather Container -->
     <div class="weather-container">
-        <h1>Weather App</h1>
+        <h1>🌦️ Weather App</h1>
         <input type="text" id="cityInput" placeholder="Enter city name">
         <button id="getWeatherBtn">Get Weather</button>
+
         <div id="weatherInfo">
-            <p><strong>Temperature:</strong> <span id="temperature"></span></p>
-            <p><strong>Humidity:</strong> <span id="humidity"></span></p>
-            <p><strong>Wind Speed:</strong> <span id="windSpeed"></span></p>
+            <p><strong>Temperature:</strong> <span id="temperature">--</span></p>
+            <p><strong>Humidity:</strong> <span id="humidity">--</span></p>
+            <p><strong>Wind Speed:</strong> <span id="windSpeed">--</span></p>
         </div>
     </div>
 
@@ -90,7 +131,7 @@
                 })
                 .catch(error => {
                     console.error('Error fetching weather data:', error);
-                    alert('Failed to fetch weather data. Please check the city name and try again.');
+                    alert('❌ Failed to fetch weather data. Please check the city name and try again.');
                 });
         });
     </script>
